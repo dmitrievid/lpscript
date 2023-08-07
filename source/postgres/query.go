@@ -11,6 +11,7 @@ import (
 
 // Establish a connection with a postgres database.
 func ConnectToDatabase() (db *pgxpool.Pool) {
+	fmt.Printf("URL IS: %v\n", os.Getenv("PG_URL"))
 	db, err := pgxpool.New(context.Background(), os.Getenv("PG_URL"))
 	if err != nil {
 		log.Printf("Error. Could not connect to a database: %v\n", err)
@@ -34,7 +35,7 @@ func ShowTables(db *pgxpool.Pool) error {
 		"SELECT tablename FROM pg_catalog.pg_tables",
 	)
 	if err != nil {
-		log.Printf("Error. Could not load existing tables: %v", err)
+		log.Printf("Error. Could not load existing tables: %v\n", err)
 		return err
 	}
 	fmt.Println(rows)

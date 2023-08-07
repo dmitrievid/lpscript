@@ -4,13 +4,15 @@ import (
 	"fmt"
 	pg "logoper_services/postgres/script/postgres"
 	"net/http"
+	"os"
 )
 
 func UpdateDatabaseStavki(w http.ResponseWriter, _ *http.Request) {
 	db := pg.ConnectToDatabase()
 	defer db.Close()
 
-	rows := pg.ReadData("../../tmp/stavki.csv")
+	fmt.Println(os.Getwd())
+	rows := pg.ReadData("../tmp/stavki.csv")
 	pg.InsertStocksTable(db, "stavki", rows)
 }
 

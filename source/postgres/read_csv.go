@@ -31,5 +31,9 @@ func ReadData(path string) [][]string {
 		log.Printf("Error. Could not read .csv file: %v\n", err)
 		return nil
 	}
+	// err = os.Remove(path)
+	// if err != nil {
+	// 	log.Printf("Error. Could not remove temp file: %v\n", err)
+	// }
 	return rows
 }

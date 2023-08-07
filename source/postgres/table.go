@@ -106,7 +106,7 @@ func CreateRzdTable(db *pgxpool.Pool, tableName string) error {
 
 	_, err := db.Exec(context.Background(), query)
 	if err != nil {
-		log.Fatalf("Error. Could not create '%v' table: %v\n", tableName, err)
+		log.Printf("Error. Could not create '%v' table: %v\n", tableName, err)
 	}
 	return err
 }
@@ -147,7 +147,7 @@ func InsertRzdTable(db *pgxpool.Pool, tableName string, rows [][]string) error {
 			row[28],
 		)
 		if err != nil {
-			log.Fatalf(
+			log.Printf(
 				"Error. Could not insert row number: %v with values: %v to %v: %v\n",
 				i, row, tableName, err)
 			return err
@@ -201,7 +201,7 @@ func CreateStocksTable(db *pgxpool.Pool, tableName string) error {
 
 	_, err := db.Exec(context.Background(), query)
 	if err != nil {
-		log.Fatalf("Error. Could not create '%v' table: %v\n", tableName, err)
+		log.Printf("Error. Could not create '%v' table: %v\n", tableName, err)
 	}
 	return err
 }
@@ -224,7 +224,7 @@ func InsertStocksTable(db *pgxpool.Pool, tableName string, rows [][]string) erro
 			row[10],
 		)
 		if err != nil {
-			log.Fatalf(
+			log.Printf(
 				"Error. Could not insert row number: %v with values: %v to %v: %v\n",
 				i, row, tableName, err)
 			return err
@@ -293,7 +293,7 @@ func CreateStavkiTable(db *pgxpool.Pool, tableName string) error {
 
 	_, err := db.Exec(context.Background(), query)
 	if err != nil {
-		log.Fatalf("Error. Could not create '%v' table: %v\n", tableName, err)
+		log.Printf("Error. Could not create '%v' table: %v\n", tableName, err)
 	}
 	return err
 }
@@ -321,7 +321,7 @@ func InsertStavkiTable(db *pgxpool.Pool, tableName string, rows [][]string) erro
 			row[15],
 		)
 		if err != nil {
-			log.Fatalf(
+			log.Printf(
 				"Error. Could not insert row number: %v with values: %v to %v: %v\n",
 				i, row, tableName, err)
 			return err

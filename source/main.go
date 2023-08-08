@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	ws "logoper_services/postgres/script/webserv"
+	ws "work/logoper_script/webserv"
 
 	"github.com/joho/godotenv"
 )

@@ -240,14 +240,14 @@ const CREATE_STAVKI_VALUES = ` (
 	"Компания"            varchar(60) NULL,
 	"Тип перевозки"       varchar(10) NULL,
 	"Вид перевозки"       varchar(10) NULL,
-	"НДС                  smallint NULL,
+	"НДС"                 varchar(3) NULL,
 	"Локация отправления" varchar(50) NULL,
 	"Станция отправления" varchar(50) NULL,
 	"Локация назначения"  varchar(50) NULL,
 	"Станция назначения"  varchar(50) NULL,
 	"Принадлежность"      varchar(3) NULL,
-	"Футовость"           smallint NULL,
-	"Стоимость"           integer NULL,
+	"Футовость"           varchar(3) NULL,
+	"Стоимость"           varchar(20) NULL,
 	"Источник"            varchar(50) NULL,
 	"Валюта"              varchar(3) NULL,
 
@@ -258,7 +258,7 @@ UNIQUE NULLS NOT DISTINCT (
   "Компания",
   "Тип перевозки",
   "Вид перевозки",
-  "НДС,
+  "НДС",
   "Локация отправления",
   "Станция отправления",
   "Локация назначения",
@@ -270,7 +270,7 @@ UNIQUE NULLS NOT DISTINCT (
   "Валюта"));
 `
 
-const INSERT_STAVKI_VALUES = ` (
+const INSERT_STAVKI_VALUES = ` VALUES (
   $1,
   $2,
   $3,

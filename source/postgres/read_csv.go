@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"encoding/csv"
+	"fmt"
 	"log"
 	"os"
 )
@@ -31,9 +32,17 @@ func ReadData(path string) [][]string {
 		log.Printf("Error. Could not read .csv file: %v\n", err)
 		return nil
 	}
-	// err = os.Remove(path)
-	// if err != nil {
-	// 	log.Printf("Error. Could not remove temp file: %v\n", err)
-	// }
 	return rows
+}
+
+func DeleteData(dirPath string) error {
+	list, err := os.ReadDir(dirPath)
+	if err != nil {
+		log.Printf("Error. Could not read files from tmp directory: %v\n", err)
+		return err
+	}
+	for i, val := range list {
+		fmt.Println(i, val)
+	}
+	return nil
 }

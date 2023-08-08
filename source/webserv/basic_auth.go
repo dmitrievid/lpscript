@@ -24,10 +24,12 @@ func basicAuth(next http.HandlerFunc) http.HandlerFunc {
 				next.ServeHTTP(w, r)
 				log.Println("Successful authentification.")
 				return
+			} else {
+				log.Printf("Warning. Failed authentification: %v:%v\n", username, password)
 			}
 		}
 
-		log.Println("Warning. Failed authentification attempt")
+		log.Println("Warning. New authentification attempt")
 		w.Header().Set("WWW-Authenticate", `Basic realm="restricted", charset="UTF-8"`)
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 	})

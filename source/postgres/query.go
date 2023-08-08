@@ -11,7 +11,6 @@ import (
 
 // Establish a connection with a postgres database.
 func ConnectToDatabase() (db *pgxpool.Pool) {
-	fmt.Printf("URL IS: %v\n", os.Getenv("PG_URL"))
 	db, err := pgxpool.New(context.Background(), os.Getenv("PG_URL"))
 	if err != nil {
 		log.Printf("Error. Could not connect to a database: %v\n", err)
@@ -21,7 +20,7 @@ func ConnectToDatabase() (db *pgxpool.Pool) {
 
 // Set datestyle for the connection.
 // This helps avoid errors during insert.
-func setDatestyle(db *pgxpool.Pool) error {
+func SetDatestyle(db *pgxpool.Pool) error {
 	_, err := db.Exec(context.Background(), "set datestyle = GERMAN, DMY")
 	if err != nil {
 		log.Printf("Error. Could not set datestyle: %v\n", err)
@@ -40,6 +39,17 @@ func ShowTables(db *pgxpool.Pool) error {
 	}
 	fmt.Println(rows)
 	return err
+}
+
+func CheckTableExistence(db *pgxpool.Pool, tableName string) (bool, error) {
+	query := "SELECT EXISTS (SELECT 1 FROM pg_tables WHERE tablename = '" + tableName + "') AS table_existence;"
+
+	fmt.Println(query)
+	row := db.QueryRow(context.Background(), query)
+
+	var res bool
+	err := row.Scan(&res)
+	return res, err
 }
 
 // Delete a table 'tableName'.

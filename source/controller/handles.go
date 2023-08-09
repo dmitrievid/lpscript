@@ -3,17 +3,18 @@ package controller
 import (
 	"fmt"
 	"net/http"
+	"os"
 	pg "work/logoper_script/postgres"
 )
 
 func DeleteCsvFiles(w http.ResponseWriter, _ *http.Request) {
-	fmt.Fprintln(w, "Deleting all .csv files...")
-	err := pg.DeleteData("../tmp/")
+	fmt.Fprintln(w, "Deleting all data files...")
+	err := pg.DeleteData(os.Getenv("LP_TEMPDIR"))
 	if err != nil {
 		fmt.Fprintf(w, "Error. Could not clear the directory: %v\n", err)
 		return
 	}
-	fmt.Fprintln(w, "Successfully deleted all .csv files.")
+	fmt.Fprintln(w, "Successfully deleted all data files.")
 }
 
 func UpdateDatabaseStavki(w http.ResponseWriter, _ *http.Request) {
@@ -52,7 +53,7 @@ func UpdateDatabaseStavki(w http.ResponseWriter, _ *http.Request) {
 	}
 
 	fmt.Fprintln(w, "Reading data from file...")
-	rows := pg.ReadData("../tmp/stavki.csv")
+	rows := pg.ReadXlsxData(os.Getenv("LP_TEMPDIR") + "stavki.xlsx")
 	if rows == nil {
 		fmt.Fprintln(w, "Error. Could not read data from file.")
 		return
@@ -104,7 +105,7 @@ func UpdateDatabaseStocks(w http.ResponseWriter, _ *http.Request) {
 	}
 
 	fmt.Fprintln(w, "Reading data from file...")
-	rows := pg.ReadData("../tmp/stocks.csv")
+	rows := pg.ReadXlsxData(os.Getenv("LP_TEMPDIR") + "stocks.xlsx")
 	if rows == nil {
 		fmt.Fprintln(w, "Error. Could not read data from file.")
 		return
@@ -156,7 +157,7 @@ func UpdateDatabaseRzd(w http.ResponseWriter, _ *http.Request) {
 	}
 
 	fmt.Fprintln(w, "Reading data from file...")
-	rows := pg.ReadData("../tmp/rzd.csv")
+	rows := pg.ReadXlsxData(os.Getenv("LP_TEMPDIR") + "rzd.xlsx")
 	if rows == nil {
 		fmt.Fprintln(w, "Error. Could not read data from file.")
 		return

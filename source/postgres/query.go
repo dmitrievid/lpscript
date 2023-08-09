@@ -28,6 +28,7 @@ func SetDatestyle(db *pgxpool.Pool) error {
 	return err
 }
 
+// Get list of all tables from current database.
 func ShowTables(db *pgxpool.Pool) error {
 	rows, err := db.Exec(
 		context.Background(),
@@ -41,13 +42,12 @@ func ShowTables(db *pgxpool.Pool) error {
 	return err
 }
 
+// Check if a table with 'tableName' exists in the current database.
 func CheckTableExistence(db *pgxpool.Pool, tableName string) (bool, error) {
 	query := "SELECT EXISTS (SELECT 1 FROM pg_tables WHERE tablename = '" + tableName + "') AS table_existence;"
-
-	fmt.Println(query)
-	row := db.QueryRow(context.Background(), query)
-
 	var res bool
+
+	row := db.QueryRow(context.Background(), query)
 	err := row.Scan(&res)
 	return res, err
 }

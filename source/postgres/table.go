@@ -39,35 +39,35 @@ const CREATE_RZD_VALUES = ` (
   "Тонн брутто"               varchar,
 
 UNIQUE NULLS NOT DISTINCT (
-  "Дата отправления"
-  "Месяц отправления"
-  "Номер вагона"
-  "Номер накладной"
-  "Номер контейнера"
-  "Префикс контейнера"
-  "Тип контейнера"
-  "Вид спецконтейнера"
-  "Гос отпр"
-  "Гос наз"
-  "Станц отпр РФ"
-  "Станц назн РФ"
-  "Дор отпр РФ"
-  "Дор назн РФ"
-  "Регион отпр РФ"
-  "Регион назн РФ"
-  "Вид перевозки"
-  "Груз"
-  "Категория отправки"
-  "Грузоотправитель"
-  "Грузополучатель"
-  "Собственник по ЕГРПО"
-  "Арендатор"
-  "Оператор СГТ"
-  "Плательщик"
-  "Плательщик пред пор"
-  "Собственник по вн справ"
-  "Контейнероотправок"
-  "Тонн_брутто"));
+  "Дата отправления",
+  "Месяц отправления",
+  "Номер вагона",
+  "Номер накладной",
+  "Номер контейнера",
+  "Префикс контейнера",
+  "Тип контейнера",
+  "Вид спецконтейнера",
+  "Гос отпр",
+  "Гос наз",
+  "Станц отпр РФ",
+  "Станц назн РФ",
+  "Дор отпр РФ",
+  "Дор назн РФ",
+  "Регион отпр РФ",
+  "Регион назн РФ",
+  "Вид перевозки",
+  "Груз",
+  "Категория отправки",
+  "Грузоотправитель",
+  "Грузополучатель",
+  "Собственник по ЕГРПО",
+  "Арендатор",
+  "Оператор СГТ",
+  "Плательщик",
+  "Плательщик пред пор",
+  "Собственник по вн справ",
+  "Контейнероотправок",
+  "Тонн брутто"));
 `
 
 const INSERT_RZD_VALUES = ` (
@@ -157,30 +157,30 @@ func InsertRzdTable(db *pgxpool.Pool, tableName string, rows [][]string) error {
 }
 
 const CREATE_STOCKS_VALUES = ` (
-"Event Date"          date,
-"Owner Name"          varchar(20),
-"Terminal"            varchar(50),
-"Stock"               varchar(100),
-"Planned Arrival"     integer,
-"Fact Stock 20"       integer,
-"Fact Stock 40"       integer,
-"Repair"              integer,
-"Reserve Export"      integer,
-"Release Cabotage"    varchar(100),
-"City Name"           varchar(50),
+  "Event Date"          varchar,
+  "Owner Name"          varchar,
+  "Terminal"            varchar,
+  "Stock"               varchar,
+  "Planned Arrival"     varchar,
+  "Fact Stock 20"       varchar,
+  "Fact Stock 40"       varchar,
+  "Repair"              varchar,
+  "Reserve Export"      varchar,
+  "Release Cabotage"    varchar,
+  "City Name"           varchar,
 
-UNIQUE NULLS NOT DISTINTC (
-"Event Date",
-"Owner Name",        
-"Terminal",
-"Stock",
-"Planned Arrival",
-"Fact Stock 20",
-"Fact Stock 40",
-"Repair",
-"Reserve Export",
-"Release Cabotage",
-"City Name"));
+  UNIQUE NULLS NOT DISTINTC (
+  "Event Date",
+  "Owner Name",        
+  "Terminal",
+  "Stock",
+  "Planned Arrival",
+  "Fact Stock 20",
+  "Fact Stock 40",
+  "Repair",
+  "Reserve Export",
+  "Release Cabotage",
+  "City Name"));
 `
 
 const INSERT_STOCKS_VALUES = ` (
@@ -234,22 +234,22 @@ func InsertStocksTable(db *pgxpool.Pool, tableName string, rows [][]string) erro
 }
 
 const CREATE_STAVKI_VALUES = ` (
-  "Дата"                date NULL,
-	"Месяц"               varchar(8) NULL,
-	"Валидность"          date NULL,
-	"Компания"            varchar(60) NULL,
-	"Тип перевозки"       varchar(10) NULL,
-	"Вид перевозки"       varchar(10) NULL,
-	"НДС"                 varchar(3) NULL,
-	"Локация отправления" varchar(50) NULL,
-	"Станция отправления" varchar(50) NULL,
-	"Локация назначения"  varchar(50) NULL,
-	"Станция назначения"  varchar(50) NULL,
-	"Принадлежность"      varchar(3) NULL,
-	"Футовость"           varchar(3) NULL,
-	"Стоимость"           varchar(20) NULL,
-	"Источник"            varchar(50) NULL,
-	"Валюта"              varchar(3) NULL,
+  "Дата"                varchar,
+	"Месяц"               varchar,
+	"Валидность"          varchar,
+	"Компания"            varchar,
+	"Тип перевозки"       varchar,
+	"Вид перевозки"       varchar,
+	"НДС"                 varchar,
+	"Локация отправления" varchar,
+	"Станция отправления" varchar,
+	"Локация назначения"  varchar,
+	"Станция назначения"  varchar,
+	"Принадлежность"      varchar,
+	"Футовость"           varchar,
+	"Стоимость"           varchar,
+	"Источник"            varchar,
+	"Валюта"              varchar,
 
 UNIQUE NULLS NOT DISTINCT (
   "Дата",

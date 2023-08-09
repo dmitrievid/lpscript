@@ -5,10 +5,26 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/xuri/excelize/v2"
 )
 
+func ReadXlsxData(path string) [][]string {
+	fd, err := excelize.OpenFile(path)
+	if err != nil {
+		log.Printf("Error. Could not open .xlsx file: %v\n", err)
+		return nil
+	}
+	rows, err := fd.GetRows(fd.GetSheetName(0))
+	if err != nil {
+		log.Printf("Error. Could not read .xlsx file: %v\n", err)
+		return nil
+	}
+	return rows[1:]
+}
+
 // Read Data from .csv to which tha path points to.
-func ReadData(path string) [][]string {
+func ReadCsvData(path string) [][]string {
 	fd, err := os.Open(path)
 	if err != nil {
 		log.Printf("Error. Could not load .csv file: %v\n", err)
